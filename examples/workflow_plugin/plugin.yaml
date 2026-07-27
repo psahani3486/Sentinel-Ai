@@ -1,0 +1,11 @@
+id: "sentinel.plugin.workflow.multi_cloud"
+name: "Multi-Cloud Ingestion Pipeline"
+version: "2.0.0"
+author: "Sentinel AI SDK Team"
+description: "Multi-cloud pipeline orchestrator workflow plugin."
+plugin_type: "workflow"
+entry_point: "examples.workflow_plugin.main:MultiCloudWorkflowPlugin"
+minimum_platform_version: "1.0.0"
+permissions:
+  - "workflow:execute"
+  - "job:create"

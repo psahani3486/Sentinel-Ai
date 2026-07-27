@@ -1,0 +1,252 @@
+@import "tailwindcss";
+
+/* ─── Sentinel AI — Enterprise Design System ─────────────────────────────── */
+
+@theme inline {
+  /* Base dark palette */
+  --color-sentinel-bg: #0a0a0f;
+  --color-sentinel-surface: #111118;
+  --color-sentinel-surface-raised: #1a1a24;
+  --color-sentinel-surface-overlay: #22222e;
+  --color-sentinel-border: #2a2a3a;
+  --color-sentinel-border-subtle: #1e1e2e;
+
+  /* Text */
+  --color-sentinel-text: #e4e4ef;
+  --color-sentinel-text-secondary: #8888a0;
+  --color-sentinel-text-muted: #55556a;
+
+  /* Accent palette */
+  --color-sentinel-blue: #3b82f6;
+  --color-sentinel-blue-hover: #2563eb;
+  --color-sentinel-emerald: #10b981;
+  --color-sentinel-emerald-hover: #059669;
+  --color-sentinel-amber: #f59e0b;
+  --color-sentinel-red: #ef4444;
+  --color-sentinel-purple: #8b5cf6;
+  --color-sentinel-cyan: #06b6d4;
+
+  /* Sidebar */
+  --color-sidebar-bg: #08080d;
+  --color-sidebar-hover: #14141e;
+  --color-sidebar-active: #1a1a2e;
+  --color-sidebar-width: 260px;
+  --color-sidebar-collapsed-width: 68px;
+
+  /* Shadows */
+  --shadow-glow-blue: 0 0 20px rgba(59, 130, 246, 0.15);
+  --shadow-glow-emerald: 0 0 20px rgba(16, 185, 129, 0.15);
+
+  /* Fonts */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* ─── Base Styles ────────────────────────────────────────────────────────── */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-sentinel-border) transparent;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-sentinel-bg);
+  color: var(--color-sentinel-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Glassmorphism Cards ────────────────────────────────────────────────── */
+
+.glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(17, 17, 24, 0.8) 0%,
+    rgba(26, 26, 36, 0.6) 100%
+  );
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-sentinel-border);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: var(--shadow-glow-blue);
+}
+
+/* ─── Metric Cards ───────────────────────────────────────────────────────── */
+
+.metric-card {
+  background: var(--color-sentinel-surface);
+  border: 1px solid var(--color-sentinel-border-subtle);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.metric-card:hover {
+  background: var(--color-sentinel-surface-raised);
+  border-color: var(--color-sentinel-border);
+  transform: translateY(-1px);
+}
+
+/* ─── Status Indicators ─────────────────────────────────────────────────── */
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot-healthy {
+  background: var(--color-sentinel-emerald);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+  animation: pulse-green 2s infinite;
+}
+
+.status-dot-warning {
+  background: var(--color-sentinel-amber);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+  animation: pulse-amber 2s infinite;
+}
+
+.status-dot-error {
+  background: var(--color-sentinel-red);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+  animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes pulse-amber {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ─── Input Styles ───────────────────────────────────────────────────────── */
+
+.input-sentinel {
+  background: var(--color-sentinel-surface);
+  border: 1px solid var(--color-sentinel-border);
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+  color: var(--color-sentinel-text);
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  outline: none;
+  width: 100%;
+}
+
+.input-sentinel:focus {
+  border-color: var(--color-sentinel-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.input-sentinel::placeholder {
+  color: var(--color-sentinel-text-muted);
+}
+
+/* ─── Button Styles ──────────────────────────────────────────────────────── */
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-sentinel-blue) 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-sentinel-text-secondary);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-ghost:hover {
+  background: var(--color-sentinel-surface-raised);
+  color: var(--color-sentinel-text);
+  border-color: var(--color-sentinel-border);
+}
+
+/* ─── Spinner ────────────────────────────────────────────────────────────── */
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-sentinel-border);
+  border-top-color: var(--color-sentinel-blue);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Fade In Animation ─────────────────────────────────────────────────── */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-fade-in-delay-1 {
+  animation: fadeIn 0.4s ease-out 0.1s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delay-2 {
+  animation: fadeIn 0.4s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delay-3 {
+  animation: fadeIn 0.4s ease-out 0.3s forwards;
+  opacity: 0;
+}

@@ -1,0 +1,10 @@
+id: "sentinel.plugin.rule.regex_anomaly"
+name: "Regex Anomaly Validation Rule"
+version: "1.0.1"
+author: "Sentinel AI SDK Team"
+description: "Custom regex string pattern validation rule plugin."
+plugin_type: "validation_rule"
+entry_point: "examples.validation_plugin.main:RegexAnomalyRulePlugin"
+minimum_platform_version: "1.0.0"
+permissions:
+  - "data:read"

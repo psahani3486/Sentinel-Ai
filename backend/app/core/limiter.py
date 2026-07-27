@@ -1,0 +1,11 @@
+"""
+Sentinel AI — API Rate Limiter Setup
+
+Provides the global slowapi Limiter instance used across routes.
+"""
+
+from slowapi import Limiter
+from slowapi.util import get_remote_address
+
+# Configure rate limiter using client IP as key
+limiter = Limiter(key_func=get_remote_address)

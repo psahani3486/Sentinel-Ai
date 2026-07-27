@@ -1,0 +1,56 @@
+# ── Render.com Blueprint Infrastructure Declaration for Sentinel AI ────────────
+services:
+  # 1. FastAPI Backend Web Service
+  - type: web
+    name: sentinel-ai-backend
+    env: python
+    region: oregon
+    plan: starter
+    rootDir: backend
+    buildCommand: "pip install -r requirements.txt && alembic upgrade head"
+    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 4"
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: "false"
+      - key: LOG_LEVEL
+        value: INFO
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: "https://sentinel-ai.vercel.app,http://localhost:3000"
+      - key: OPENAI_API_KEY
+        sync: false
+
+  # 2. Celery Distributed Worker Service
+  - type: worker
+    name: sentinel-ai-worker
+    env: python
+    region: oregon
+    plan: starter
+    rootDir: backend
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python -m app.workers.distributed_worker"
+    autoDeploy: true
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: LOG_LEVEL
+        value: INFO
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: SECRET_KEY
+        sync: false
+      - key: JWT_SECRET
+        sync: false

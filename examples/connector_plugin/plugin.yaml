@@ -1,0 +1,11 @@
+id: "sentinel.plugin.connector.snowflake"
+name: "Snowflake Cloud Connector"
+version: "1.2.0"
+author: "Sentinel AI SDK Team"
+description: "High throughput Snowflake ingestion connector plugin."
+plugin_type: "connector"
+entry_point: "examples.connector_plugin.main:SnowflakeConnectorPlugin"
+minimum_platform_version: "1.0.0"
+permissions:
+  - "network:read"
+  - "database:connect"
