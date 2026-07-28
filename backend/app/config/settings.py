@@ -95,6 +95,11 @@ class Settings(BaseSettings):
     FIRST_ADMIN_FULL_NAME: str = "System Administrator"
 
     # ── AI Integration ───────────────────────────────────────────────────
+    GROQ_API_KEY: str | None = Field(
+        default=None,
+        description="Groq API key for AI Root Cause Analysis & diagnostics.",
+    )
+    GROQ_MODEL: str = "llama-3.3-70b-versatile"
     OPENAI_API_KEY: str | None = None
 
     # ── Logging ──────────────────────────────────────────────────────────

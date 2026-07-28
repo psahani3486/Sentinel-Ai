@@ -9,7 +9,7 @@ from dataclasses import dataclass, field
 
 from app.ai.base_analyzer import AnalysisContext, EvidenceCandidate
 from app.ai.executor import AnalysisExecutor
-from app.ai.llm_provider import BaseLLMProvider, MockLLMProvider
+from app.ai.llm_provider import BaseLLMProvider, get_default_llm_provider
 from app.models.enums import ValidationSeverity
 
 
@@ -37,7 +37,7 @@ class RootCauseEngine:
         llm_provider: BaseLLMProvider | None = None,
     ) -> None:
         self._executor = executor or AnalysisExecutor()
-        self._llm_provider = llm_provider or MockLLMProvider()
+        self._llm_provider = llm_provider or get_default_llm_provider()
 
     def run_root_cause_analysis(self, context: AnalysisContext) -> StructuredRCAReport:
         """
