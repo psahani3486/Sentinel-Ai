@@ -12,6 +12,8 @@ services:
     healthCheckPath: /health
     autoDeploy: true
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
       - key: ENVIRONMENT
         value: production
       - key: DEBUG
@@ -42,6 +44,8 @@ services:
     startCommand: "python -m app.workers.distributed_worker"
     autoDeploy: true
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
       - key: ENVIRONMENT
         value: production
       - key: LOG_LEVEL
@@ -54,3 +58,4 @@ services:
         sync: false
       - key: JWT_SECRET
         sync: false
+
