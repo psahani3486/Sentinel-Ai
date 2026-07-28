@@ -13,6 +13,25 @@ Comparable to industry platforms like **Monte Carlo**, **Evidently AI**, **Datad
 
 ---
 
+## 📸 Platform Screenshots
+
+### ⚡ 1-Click Instant Demo Sign-In & Unified Auth
+![Sentinel AI Login Page](docs/screenshots/login.png)
+
+### 📊 Industrial Observability Dashboard & SLA Health
+![Sentinel AI Dashboard](docs/screenshots/dashboard.png)
+
+### 📁 Enterprise Data Catalog & Business Glossary
+![Sentinel AI Data Catalog](docs/screenshots/catalog.png)
+
+### ⚙️ DAG Pipeline Workflow Orchestration
+![Sentinel AI Workflows](docs/screenshots/workflows.png)
+
+### 🚨 Unified Incident Investigation Workspace
+![Sentinel AI Incidents](docs/screenshots/incidents.png)
+
+---
+
 ## 🏛️ Platform Architecture
 
 Sentinel AI is engineered following **Clean Architecture**, **Strategy Pattern**, **Specification Pattern**, **Factory Pattern**, **Observer Pattern**, and **State Machine Patterns** with zero switch statements and complete module decoupling.
