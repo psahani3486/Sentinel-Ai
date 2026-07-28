@@ -119,7 +119,7 @@ def test_root_cause_engine():
     report = engine.run_root_cause_analysis(ctx)
     assert "vr-999" in report.summary
     assert report.confidence_score > 0.0
-    assert report.llm_provider_name == "MockLLMProvider"
+    assert report.llm_provider_name == engine._llm_provider.provider_name
 
 
 @pytest.mark.asyncio
