@@ -74,7 +74,11 @@ class Settings(BaseSettings):
     REFRESH_TOKEN_EXPIRE_DAYS: int = Field(default=30, ge=1)
 
     # ── Security & Middleware ────────────────────────────────────────────
-    CORS_ORIGINS: Any = ["http://localhost:3000", "http://127.0.0.1:3000"]
+    CORS_ORIGINS: Any = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "https://sentinel-ai-three-ashen.vercel.app",
+    ]
     TRUSTED_HOSTS: list[str] = ["localhost", "127.0.0.1", "backend", "test", "testserver", "*.onrender.com", "*.vercel.app"]
     ALLOWED_HOSTS: list[str] = ["localhost", "127.0.0.1", "backend", "test", "testserver", "*.onrender.com", "*.vercel.app"]
 
@@ -115,11 +119,18 @@ class Settings(BaseSettings):
         else:
             origins = ["http://localhost:3000"]
 
-        dev_origins = ["http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:8000"]
-        for dev_o in dev_origins:
-            if dev_o not in origins:
-                origins.append(dev_o)
-        return origins
+        known_origins = [
+            "http://localhost:3000",
+            "http://127.0.0.1:3000",
+            "http://localhost:8000",
+            "https://sentinel-ai-three-ashen.vercel.app",
+        ]
+        for ko in known_origins:
+            if ko not in origins:
+                origins.append(ko)
+
+        # Remove wildcard "*" as Starlette CORS with allow_credentials=True requires explicit origins
+        return [o for o in origins if o != "*"]
 
     @property
     def allowed_hosts_list(self) -> list[str]:

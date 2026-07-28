@@ -125,7 +125,7 @@ def create_app() -> FastAPI:
     async def root_health_probe():
         return {"status": "healthy", "app": settings.APP_NAME, "version": settings.APP_VERSION}
 
-    # Middleware Stack (Outer to Inner)
+    # Middleware Stack (Outer to Inner: last added middleware runs FIRST on incoming requests)
     app.add_middleware(GZipMiddleware, minimum_size=1000)
     app.add_middleware(SecurityHeadersMiddleware)
     app.add_middleware(RequestSizeLimitMiddleware)
@@ -133,15 +133,16 @@ def create_app() -> FastAPI:
         TrustedHostMiddleware,
         allowed_hosts=settings.allowed_hosts_list,
     )
+    app.add_middleware(RequestLoggingMiddleware)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins_list,
+        allow_origin_regex=r"https://.*\.vercel\.app|https://.*\.onrender\.com|http://localhost:\d+|http://127\.0\.0\.1:\d+",
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
         expose_headers=["X-Request-ID"],
     )
-    app.add_middleware(RequestLoggingMiddleware)
 
     # Register Exception Handlers
     register_exception_handlers(app)

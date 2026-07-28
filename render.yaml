@@ -29,7 +29,7 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: CORS_ORIGINS
-        value: "*"
+        value: "https://sentinel-ai-three-ashen.vercel.app,http://localhost:3000"
       - key: OPENAI_API_KEY
         sync: false
 
