@@ -26,12 +26,13 @@ import {
   getAccessToken,
   setAccessToken,
 } from "@/lib/auth";
-import type {
-  AuthState,
-  LoginRequest,
-  RegisterRequest,
-  TokenResponse,
-  User,
+import {
+  type AuthState,
+  type LoginRequest,
+  type RegisterRequest,
+  type TokenResponse,
+  type User,
+  UserRole,
 } from "@/types/auth";
 
 interface AuthContextValue {
