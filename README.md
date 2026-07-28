@@ -1,6 +1,5 @@
 # Sentinel AI — Enterprise Data Quality, Observability & Root Cause Analysis Platform
 
-[![CI/CD Pipeline](https://github.com/sentinel-ai/sentinel-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/sentinel-ai/sentinel-ai/actions/workflows/ci.yml)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg?logo=fastapi)](https://fastapi.tiangolo.com)
 [![Next.js 15](https://img.shields.io/badge/Next.js-15.0+-000000.svg?logo=next.js)](https://nextjs.org)
 [![Python 3.13](https://img.shields.io/badge/Python-3.13+-3776AB.svg?logo=python)](https://python.org)
