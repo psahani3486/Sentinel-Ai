@@ -20,10 +20,19 @@ import {
 } from "@/lib/auth";
 import type { TokenResponse } from "@/types/auth";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const getBaseUrl = (): string => {
+  const rawUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  const trimmed = rawUrl.replace(/\/+$/, "");
+  if (trimmed.endsWith("/api/v1")) {
+    return trimmed;
+  }
+  return `${trimmed}/api/v1`;
+};
+
+const API_BASE_URL = getBaseUrl();
 
 const apiClient: AxiosInstance = axios.create({
-  baseURL: `${API_BASE_URL}/api/v1`,
+  baseURL: API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -95,7 +104,7 @@ apiClient.interceptors.response.use(
       try {
         // Post to refresh without body. Cookie is transmitted automatically.
         const { data } = await axios.post<TokenResponse>(
-          `${API_BASE_URL}/api/v1/auth/refresh`,
+          `${API_BASE_URL}/auth/refresh`,
           {},
           { withCredentials: true }
         );
